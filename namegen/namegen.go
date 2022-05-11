@@ -2,7 +2,6 @@ package namegen
 
 import (
 	"encoding/csv"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -71,7 +70,6 @@ func NameCreation() NameEngine {
 		lastNamesLength:  len(lastNames),
 		intialSeed:       int(time.Now().Unix()),
 	}
-	fmt.Println(nE.firstNamesLength)
 	return nE
 
 }
