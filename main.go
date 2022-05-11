@@ -1,12 +1,16 @@
 package main
 
 import (
-	"fmt"
-
+	"random.name/names/addressgen"
 	"random.name/names/namegen"
 )
 
 func main() {
-	NE := namegen.NameCreation()
-	fmt.Println(NE.CreateName())
+	noRun := false
+	if noRun {
+		NE := namegen.NameCreation()
+		_ = NE
+	}
+	addressgen.AddressEngineCreate()
+
 }

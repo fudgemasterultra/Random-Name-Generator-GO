@@ -42,8 +42,8 @@ func readCSVLastName() []string {
 	return allSurName
 }
 
-func readCSVFirstName() []string {
-	var allNames []string
+func readCSVFirstName() [][]string {
+	var allNames [][]string
 	f, err := os.Open("./namegen/firstnames.csv")
 	if err != nil {
 		log.Fatal(err)
@@ -54,7 +54,7 @@ func readCSVFirstName() []string {
 	allLines = allLines[1:]
 	for index, element := range allLines {
 		_ = index
-		allNames = append(allNames, element[1])
+		allNames = append(allNames, []string{element[1], element[3]})
 	}
 	return allNames
 }

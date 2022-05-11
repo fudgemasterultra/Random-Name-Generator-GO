@@ -5,18 +5,18 @@ import (
 )
 
 type NameEngine struct {
-	firstNames       []string
+	firstNames       [][]string
 	lastNames        []string
 	firstNamesLength int
 	lastNamesLength  int
 	intialSeed       int
 }
 
-func (n *NameEngine) CreateName() [2]string {
+func (n *NameEngine) CreateName() [3]string {
 	rand.Seed(int64(n.intialSeed))
 	n.intialSeed = n.intialSeed + 10
 	randomFirstIndex := rand.Intn(n.firstNamesLength)
 	randomSecondIndex := rand.Intn(n.lastNamesLength)
-	fullName := [2]string{n.firstNames[randomFirstIndex], n.lastNames[randomSecondIndex]}
+	fullName := [3]string{n.firstNames[randomFirstIndex][0], n.lastNames[randomSecondIndex], n.firstNames[randomFirstIndex][1]}
 	return fullName
 }
