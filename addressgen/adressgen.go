@@ -6,6 +6,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"time"
 )
 
 func csvParser(f *os.File) [][]string {
@@ -27,6 +28,24 @@ func csvParser(f *os.File) [][]string {
 	return allLines
 }
 
+func getZips() []map[string]string {
+	var zips []map[string]string
+	f, err := os.Open("./addressgen/uszips.csv")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer f.Close()
+	zipsListed := csvParser(f)
+	for _, element := range zipsListed {
+		cityStateZip := map[string]string{
+			"zip":   element[0],
+			"city":  element[3],
+			"state": element[3]}
+		zips = append(zips, cityStateZip)
+	}
+	return zips
+}
+
 func getStreet() []string {
 	var streets []string
 	f, err := os.Open("./addressgen/street_names.csv")
@@ -43,10 +62,18 @@ func getStreet() []string {
 
 }
 
-func startAdressEngine() {
+func startAdressEngine() AddressEngine {
 	//Going to load nessasry datapoints into memory
 	streetNames := getStreet()
-	_ = streetNames
+	zipCodes := getZips()
+	ae := AddressEngine{
+		streetAdd:          streetNames,
+		streetAddLength:    len(streetNames),
+		cityStateZip:       zipCodes,
+		cityStateZipLength: len(zipCodes),
+		seed:               time.Now().Unix(),
+	}
+	return ae
 
 }
 
