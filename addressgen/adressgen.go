@@ -2,7 +2,6 @@ package addressgen
 
 import (
 	"encoding/csv"
-	"fmt"
 	"io"
 	"log"
 	"os"
@@ -40,7 +39,7 @@ func getZips() []map[string]string {
 		cityStateZip := map[string]string{
 			"zip":   element[0],
 			"city":  element[3],
-			"state": element[3]}
+			"state": element[4]}
 		zips = append(zips, cityStateZip)
 	}
 	return zips
@@ -56,7 +55,7 @@ func getStreet() []string {
 	streetsListed := csvParser(f)
 
 	for _, element := range streetsListed {
-		streets = append(streets, element[0])
+		streets = append(streets, element[1])
 	}
 	return streets
 
@@ -77,7 +76,7 @@ func startAdressEngine() AddressEngine {
 
 }
 
-func AddressEngineCreate() {
-	startAdressEngine()
-	fmt.Println("Placeholder so go doesn't keep getting rid of FMT, FML")
+func AddressEngineCreate() AddressEngine {
+	ae := startAdressEngine()
+	return ae
 }

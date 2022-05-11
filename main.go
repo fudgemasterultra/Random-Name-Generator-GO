@@ -8,9 +8,11 @@ import (
 func main() {
 	noRun := false
 	if noRun {
+		ae := addressgen.AddressEngineCreate()
 		NE := namegen.NameCreation()
 		_ = NE
+		_ = ae
+
 	}
-	addressgen.AddressEngineCreate()
 
 }
