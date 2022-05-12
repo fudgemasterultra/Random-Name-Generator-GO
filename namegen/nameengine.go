@@ -1,6 +1,7 @@
 package namegen
 
 import (
+	"fmt"
 	"math/rand"
 )
 
@@ -18,5 +19,6 @@ func (n *NameEngine) CreateName() [3]string {
 	randomFirstIndex := rand.Intn(n.firstNamesLength)
 	randomSecondIndex := rand.Intn(n.lastNamesLength)
 	fullName := [3]string{n.firstNames[randomFirstIndex][0], n.lastNames[randomSecondIndex], n.firstNames[randomFirstIndex][1]}
+	fmt.Println(fullName)
 	return fullName
 }
